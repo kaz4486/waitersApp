@@ -2,6 +2,7 @@ import { Row, ListGroup, Col, Button } from 'react-bootstrap';
 import { useSelector } from 'react-redux';
 import { getAllTables } from '../../redux/tablesRedux';
 import styles from './TablesList.module.scss';
+import { Link } from 'react-router-dom';
 
 const TablesList = () => {
   const tables = useSelector((state) => getAllTables(state));
@@ -21,7 +22,9 @@ const TablesList = () => {
               </p>
             </Col>
             <Col md={2}>
-              <Button>Show more</Button>
+              <Link key={table.id} to={'/table/' + table.id}>
+                <Button>Show more</Button>
+              </Link>
             </Col>
           </Row>
         </ListGroup.Item>

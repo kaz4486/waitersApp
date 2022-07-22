@@ -5,6 +5,7 @@ import { Routes, Route } from 'react-router-dom';
 import Header from './components/views/Header/Header';
 import Home from './components/views/pages/Home/Home';
 import { fetchTables } from './redux/tablesRedux';
+import Table from './components/views/pages/Table/Table';
 
 const App = () => {
   const dispatch = useDispatch();
@@ -17,6 +18,7 @@ const App = () => {
         <Header />
         <Routes>
           <Route path='/' element={<Home />} />
+          <Route path='/table/:id' element={<Table />} />
         </Routes>
       </Container>
     </main>
