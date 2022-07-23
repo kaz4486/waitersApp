@@ -6,6 +6,7 @@ import Header from './components/views/Header/Header';
 import Home from './components/views/pages/Home/Home';
 import { fetchTables } from './redux/tablesRedux';
 import Table from './components/views/pages/Table/Table';
+import Footer from './components/views/Footer/Footer';
 
 const App = () => {
   const dispatch = useDispatch();
@@ -20,6 +21,7 @@ const App = () => {
           <Route path='/' element={<Home />} />
           <Route path='/table/:id' element={<Table />} />
         </Routes>
+        <Footer />
       </Container>
     </main>
   );

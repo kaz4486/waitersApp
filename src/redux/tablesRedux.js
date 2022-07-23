@@ -16,6 +16,28 @@ export const fetchTables = () => {
       .then((tables) => dispatch(updateTables(tables)));
   };
 };
+export const patchTable = (id, { ...tableData }) => {
+  return (dispatch) => {
+    const options = {
+      method: 'PATCH',
+
+      headers: {
+        'Content-Type': 'application/json',
+      },
+
+      body: JSON.stringify({
+        id: id,
+        status: tableData.status,
+        people: tableData.people,
+        maxPeople: tableData.maxPeople,
+        bill: tableData.bill,
+      }),
+    };
+    fetch(`http://localhost:3131/api/tables/${id}`, options)
+      .then((res) => res.json())
+      .then((tables) => dispatch(updateTables(tables)));
+  };
+};
 
 const tablesReducer = (statePart = [], action) => {
   switch (action.type) {
