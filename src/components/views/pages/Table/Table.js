@@ -6,6 +6,7 @@ import styles from './Table.module.scss';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useForm } from 'react-hook-form';
+import appointedStatuses from '../../../../config/statuses';
 
 const Table = () => {
   const { id } = useParams();
@@ -25,11 +26,6 @@ const Table = () => {
   const [status, setStatus] = useState(tableData.status);
 
   const [show, setShow] = useState(status === 'Busy');
-  // if (status === 'Busy') {
-  //   setShow(true);
-  // }
-
-  // useEffect(() => dispatch(patchTable()), []);
 
   const handleSubmit = (e) => {
     let table = { people, maxPeople, bill, status };
@@ -84,11 +80,10 @@ const Table = () => {
                 aria-label='Select status'
                 onChange={handleStatusChange}
               >
-                <option>{status}</option>
-                <option value='Busy'>Busy</option>
-                <option value='Reserved'>Reserved</option>
-                <option value='Free'>Free</option>
-                <option value='Cleaning'>Cleaning</option>
+                {/* <option>{status}</option>
+                {filteredStatuses.map((filteredStatus) => (
+                  <option value={filteredStatus}>{filteredStatus}</option>
+                ))} */}
               </Form.Select>
             </Col>
           </Row>
