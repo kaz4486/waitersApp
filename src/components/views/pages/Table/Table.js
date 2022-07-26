@@ -33,8 +33,17 @@ const Table = () => {
     navigate('/');
   };
 
+  let filteredStatuses = [];
+  const getFilteredStatuses = (status) => {
+    filteredStatuses = appointedStatuses.filter(
+      (appointedStatus) => appointedStatus !== status
+    );
+  };
+  getFilteredStatuses(status);
+
   const handleStatusChange = (e) => {
     setStatus(e.target.value);
+    getFilteredStatuses(status);
     if (e.target.value === 'Cleaning' || e.target.value === 'Free') {
       setPeople(0);
       setShow(false);
@@ -80,10 +89,18 @@ const Table = () => {
                 aria-label='Select status'
                 onChange={handleStatusChange}
               >
-                {/* <option>{status}</option>
+                <option>{status}</option>
                 {filteredStatuses.map((filteredStatus) => (
-                  <option value={filteredStatus}>{filteredStatus}</option>
-                ))} */}
+                  <option value={filteredStatus} key={filteredStatus}>
+                    {filteredStatus}
+                  </option>
+                ))}
+                {/* {if (appointedStatus !== status) {
+                appointedStatuses.map((appointedStatus) => {
+                  {
+                    <option value={appointedStatus}>{appointedStatus}</option>;
+                  }}
+                })} */}
               </Form.Select>
             </Col>
           </Row>
