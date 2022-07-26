@@ -7,6 +7,7 @@ import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useForm } from 'react-hook-form';
 import appointedStatuses from '../../../../config/statuses';
+import PropTypes from 'prop-types';
 
 const Table = () => {
   const { id } = useParams();
@@ -176,4 +177,12 @@ const Table = () => {
       </Container>
     );
 };
+
+Table.propTypes = {
+  getTableById: PropTypes.func,
+  patchTable: PropTypes.func,
+  tableData: PropTypes.array,
+  filteredStatuses: PropTypes.array,
+};
+
 export default Table;

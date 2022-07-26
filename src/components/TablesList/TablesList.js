@@ -3,6 +3,7 @@ import { useSelector } from 'react-redux';
 import { getAllTables } from '../../redux/tablesRedux';
 import styles from './TablesList.module.scss';
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
 const TablesList = () => {
   const tables = useSelector((state) => getAllTables(state));
@@ -31,6 +32,10 @@ const TablesList = () => {
       ))}
     </ListGroup>
   );
+};
+
+TablesList.propTypes = {
+  table: PropTypes.array,
 };
 
 export default TablesList;

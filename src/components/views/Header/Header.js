@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import NavBar from '../NavBar/NavBar';
 
 const Header = () => {
@@ -6,6 +7,10 @@ const Header = () => {
       <NavBar />
     </div>
   );
+};
+
+Header.propTypes = {
+  NavBar: PropTypes.func,
 };
 
 export default Header;

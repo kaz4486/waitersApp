@@ -1,7 +1,7 @@
 import TablesList from '../../../TablesList/TablesList';
 import { Container } from 'react-bootstrap';
 
-const Home = () => {
+const Home = (pending) => {
   return (
     <Container>
       <h1 className='my-3'>All tables</h1>
