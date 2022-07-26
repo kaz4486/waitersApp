@@ -16,10 +16,10 @@
     },
     {
       "id": "3",
-      "status": "Free",
-      "people": 0,
+      "status": "Reserved",
+      "people": 2,
       "maxPeople": 4,
-      "bill": "3"
+      "bill": 0
     },
     {
       "id": "4",

@@ -72,6 +72,12 @@ const Table = () => {
     }
   };
 
+  const handleBill = (e) => {
+    if (e.target.value >= 0) {
+      setBill(e.target.value);
+    }
+  };
+
   if (!tableData) return <Navigate to='/' />;
   else
     return (
@@ -95,12 +101,6 @@ const Table = () => {
                     {filteredStatus}
                   </option>
                 ))}
-                {/* {if (appointedStatus !== status) {
-                appointedStatuses.map((appointedStatus) => {
-                  {
-                    <option value={appointedStatus}>{appointedStatus}</option>;
-                  }}
-                })} */}
               </Form.Select>
             </Col>
           </Row>
@@ -160,7 +160,7 @@ const Table = () => {
                       <Form.Control
                         type='number'
                         value={bill}
-                        onChange={(e) => setBill(e.target.value)}
+                        onChange={handleBill}
                       />
                     </Col>
                   </Row>
