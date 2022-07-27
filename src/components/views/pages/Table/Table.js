@@ -30,7 +30,7 @@ const Table = () => {
 
   const handleSubmit = (e) => {
     let table = { people, maxPeople, bill, status };
-    dispatch(patchTable(id, { ...table }));
+    dispatch(patchTable(id, table));
     navigate('/');
   };
 
