@@ -29,7 +29,7 @@ const Table = () => {
   const [show, setShow] = useState(status === 'Busy');
 
   const handleSubmit = (e) => {
-    let table = { people, maxPeople, bill, status };
+    let table = [people, maxPeople, bill, status];
     dispatch(patchTable(id, table));
     navigate('/');
   };
