@@ -5,19 +5,19 @@
       "status": "Cleaning",
       "people": 0,
       "maxPeople": 5,
-      "bill": "2"
+      "bill": 0
     },
     {
       "id": "2",
-      "status": "Busy",
+      "status": "Reserved",
       "people": 3,
       "maxPeople": 5,
-      "bill": "56"
+      "bill": 0
     },
     {
       "id": "3",
-      "status": "Cleaning",
-      "people": 3,
+      "status": "Busy",
+      "people": 2,
       "maxPeople": 4,
       "bill": 0
     },
