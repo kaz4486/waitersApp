@@ -48,7 +48,7 @@ export const patchTable = (id, { ...tableData }) => {
 const tablesReducer = (statePart = [], action) => {
   switch (action.type) {
     case UPDATE_TABLES:
-      return [...[...action.payload]];
+      return [...action.payload];
     default:
       return statePart;
   }
