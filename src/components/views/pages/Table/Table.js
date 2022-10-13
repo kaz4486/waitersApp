@@ -1,9 +1,23 @@
 import { useParams, Navigate, useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import { getTableById, patchTable } from '../../../../redux/tablesRedux';
-import { Container, Row, Form, Col, Button } from 'react-bootstrap';
+import {
+  fetchTables,
+  getAllTables,
+  getStatuses,
+  getTableById,
+  patchTable,
+} from '../../../../redux/tablesRedux';
+import {
+  Container,
+  Row,
+  Form,
+  Col,
+  Button,
+  ProgressBar,
+  Alert,
+} from 'react-bootstrap';
 import styles from './Table.module.scss';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useForm } from 'react-hook-form';
 import appointedStatuses from '../../../../config/statuses';
@@ -11,9 +25,20 @@ import PropTypes from 'prop-types';
 
 const Table = () => {
   const { id } = useParams();
-  const tableData = useSelector((state) => getTableById(state, id));
+
   const navigate = useNavigate();
   const dispatch = useDispatch();
+
+  // useEffect(() => {
+  //   dispatch(fetchTables());
+  // }, [dispatch]);
+
+  const request = useSelector(getStatuses);
+  console.log(request);
+  const tables = useSelector(getAllTables);
+  console.log(tables);
+  const tableData = useSelector((state) => getTableById(state, id));
+  console.log(tableData);
 
   const {
     register,
@@ -79,8 +104,10 @@ const Table = () => {
     }
   };
 
-  if (!tableData) return <Navigate to='/' />;
-  else
+  if (request.loading) return <ProgressBar animated color='primary' now={50} />;
+  if (request.error) return <Alert color='danger'>{request.error}</Alert>;
+  if (!request.success || !tableData) return <Navigate to='/' />;
+  if (request.success)
     return (
       <Container>
         <Form onSubmit={validate(handleSubmit)}>
@@ -179,7 +206,7 @@ const Table = () => {
 };
 
 Table.propTypes = {
-  getTableById: PropTypes.func,
+  getTableById: PropTypes.string,
   patchTable: PropTypes.func,
   tableData: PropTypes.array,
   filteredStatuses: PropTypes.array,

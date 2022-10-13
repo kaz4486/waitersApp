@@ -3,14 +3,14 @@
     {
       "id": "1",
       "status": "Busy",
-      "people": 0,
+      "people": 2,
       "maxPeople": 5,
-      "bill": 0
+      "bill": "3"
     },
     {
       "id": "2",
       "status": "Free",
-      "people": 0,
+      "people": 4,
       "maxPeople": 5,
       "bill": 0
     },
@@ -31,9 +31,9 @@
     {
       "id": "5",
       "status": "Busy",
-      "people": 3,
+      "people": 4,
       "maxPeople": 4,
-      "bill": 80
+      "bill": "45"
     }
   ]
 }
