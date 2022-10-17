@@ -6,7 +6,6 @@ export const getAllTables = (state) => state.tables.data;
 export const getTableById = ({ tables }, tableId) =>
   tables.data.find((table) => table.id === tableId);
 export const getStatuses = (state) => state.tables.status;
-// export const getRequest = ({ photos }, name) => photos.requests[name];
 
 //action names
 const createActionName = (name) => `app/tables/${name}`;
@@ -23,14 +22,12 @@ export const fetchStart = (payload) => ({ type: FETCH_START, payload });
 export const fetchSuccess = (payload) => ({ type: FETCH_SUCCESS, payload });
 export const fetchError = (payload) => ({ type: FETCH_ERROR, payload });
 
-// isLoading, isLoading=false, isLoading=false error
 export const fetchTables = () => {
   return (dispatch) => {
     dispatch(fetchStart({ name: GET_TABLES }));
     fetch(`${API_URL}/tables`)
       .then((res) => res.json())
       .then((tables) => {
-        console.log(tables);
         dispatch(getTables(tables));
         dispatch(fetchSuccess({ name: GET_TABLES }));
       })
@@ -73,7 +70,6 @@ const tablesReducer = (statePart = initialState, action = {}) => {
   switch (action.type) {
     case GET_TABLES:
       return { ...statePart, data: [...action.payload] };
-
     case UPDATE_TABLES:
       return {
         ...statePart,

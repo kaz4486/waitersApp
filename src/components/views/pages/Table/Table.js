@@ -1,8 +1,7 @@
-import { useParams, Navigate, useNavigate } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import {
   fetchTables,
-  getAllTables,
   getStatuses,
   getTableById,
   patchTable,
@@ -25,33 +24,37 @@ import PropTypes from 'prop-types';
 
 const Table = () => {
   const { id } = useParams();
-
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  // useEffect(() => {
-  //   dispatch(fetchTables());
-  // }, [dispatch]);
-
-  const request = useSelector(getStatuses);
-  console.log(request);
-  const tables = useSelector(getAllTables);
-  console.log(tables);
   const tableData = useSelector((state) => getTableById(state, id));
-  console.log(tableData);
+  const request = useSelector(getStatuses);
+
+  const [people, setPeople] = useState(tableData?.people);
+  const [maxPeople, setMaxPeople] = useState(tableData?.maxPeople);
+  const [bill, setBill] = useState(tableData?.bill);
+  const [status, setStatus] = useState(tableData?.status);
+  const [show, setShow] = useState(status === 'Busy');
+
+  useEffect(() => {
+    dispatch(fetchTables());
+  }, [dispatch]);
+
+  //renderuje drugi raz kiedy tableData się zmieni
+  useEffect(() => {
+    if (tableData) {
+      setPeople(tableData.people);
+      setMaxPeople(tableData.maxPeople);
+      setBill(tableData.bill);
+      setStatus(tableData.status);
+    }
+  }, [tableData]);
 
   const {
     register,
     handleSubmit: validate,
     formState: { errors },
   } = useForm();
-
-  const [people, setPeople] = useState(tableData.people);
-  const [maxPeople, setMaxPeople] = useState(tableData.maxPeople);
-  const [bill, setBill] = useState(tableData.bill);
-  const [status, setStatus] = useState(tableData.status);
-
-  const [show, setShow] = useState(status === 'Busy');
 
   const handleSubmit = (e) => {
     let table = { people, maxPeople, bill, status };
@@ -106,7 +109,6 @@ const Table = () => {
 
   if (request.loading) return <ProgressBar animated color='primary' now={50} />;
   if (request.error) return <Alert color='danger'>{request.error}</Alert>;
-  if (!request.success || !tableData) return <Navigate to='/' />;
   if (request.success)
     return (
       <Container>
@@ -124,8 +126,8 @@ const Table = () => {
                 onChange={handleStatusChange}
               >
                 <option>{status}</option>
-                {filteredStatuses.map((filteredStatus) => (
-                  <option value={filteredStatus} key={filteredStatus}>
+                {filteredStatuses.map((filteredStatus, index) => (
+                  <option value={filteredStatus} key={index}>
                     {filteredStatus}
                   </option>
                 ))}

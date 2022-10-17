@@ -2,24 +2,24 @@
   "tables": [
     {
       "id": "1",
-      "status": "Busy",
+      "status": "Reserved",
       "people": 2,
       "maxPeople": 5,
-      "bill": "3"
+      "bill": 0
     },
     {
       "id": "2",
-      "status": "Free",
+      "status": "Busy",
       "people": 4,
       "maxPeople": 5,
-      "bill": 0
+      "bill": "1"
     },
     {
       "id": "3",
       "status": "Busy",
       "people": 2,
       "maxPeople": 4,
-      "bill": 0
+      "bill": "1"
     },
     {
       "id": "4",
@@ -33,7 +33,7 @@
       "status": "Busy",
       "people": 4,
       "maxPeople": 4,
-      "bill": "45"
+      "bill": "46"
     }
   ]
 }

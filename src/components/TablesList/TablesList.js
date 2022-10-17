@@ -11,13 +11,12 @@ import { useEffect } from 'react';
 const TablesList = () => {
   const dispatch = useDispatch();
 
-  // useEffect(() => {
-  //   dispatch(fetchTables());
-  // }, [dispatch]);
+  useEffect(() => {
+    dispatch(fetchTables());
+  }, [dispatch]);
+
   const status = useSelector(getStatuses);
-  console.log(status);
   const tables = useSelector(getAllTables);
-  console.log(tables);
 
   if (status.loading) return <ProgressBar animated color='primary' now={50} />;
   if (status.error) return <Alert color='danger'>{status.error}</Alert>;
@@ -29,7 +28,7 @@ const TablesList = () => {
         <ListGroup variant='flush'>
           {tables.map((table) => (
             <ListGroup.Item key={table.id} className='px-0'>
-              <Row>
+              <Row key={table.id}>
                 <Col md={2}>
                   <h4>Table {table.id}</h4>
                 </Col>
@@ -40,7 +39,7 @@ const TablesList = () => {
                   </p>
                 </Col>
                 <Col md={2}>
-                  <Link key={table.id} to={'/table/' + table.id}>
+                  <Link to={'/table/' + table.id}>
                     <Button>Show more</Button>
                   </Link>
                 </Col>
