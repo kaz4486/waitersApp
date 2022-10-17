@@ -28,7 +28,7 @@ const TablesList = () => {
         <ListGroup variant='flush'>
           {tables.map((table) => (
             <ListGroup.Item key={table.id} className='px-0'>
-              <Row key={table.id}>
+              <Row>
                 <Col md={2}>
                   <h4>Table {table.id}</h4>
                 </Col>

@@ -3,14 +3,14 @@
     {
       "id": "1",
       "status": "Reserved",
-      "people": 2,
+      "people": 3,
       "maxPeople": 5,
       "bill": 0
     },
     {
       "id": "2",
       "status": "Busy",
-      "people": 4,
+      "people": 3,
       "maxPeople": 5,
       "bill": "1"
     },
