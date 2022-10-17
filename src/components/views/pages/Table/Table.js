@@ -122,8 +122,10 @@ const Table = () => {
             </Col>
             <Col xs={4}>
               <Form.Select
+                {...register('status', { required: true })}
                 aria-label='Select status'
                 onChange={handleStatusChange}
+                value={status}
               >
                 <option>{status}</option>
                 {filteredStatuses.map((filteredStatus, index) => (
